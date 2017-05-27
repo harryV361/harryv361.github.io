@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>haryV的博客</title>
+  <subtitle>这是副标题</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2017-05-27T05:32:03.000Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>harryV</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>spring cloud概括</title>
+    <link href="http://yoursite.com/2017/05/27/spring-cloud%E6%A6%82%E6%8B%AC/"/>
+    <id>http://yoursite.com/2017/05/27/spring-cloud概括/</id>
+    <published>2017-05-27T03:40:22.000Z</published>
+    <updated>2017-05-27T05:32:03.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Spring Cloud是基于Spring Boot实现的微服务框架，提供了配置管理、服务治理、断路器、智能路由、微代理、控制总线、全局锁、决策竞选、分布式会话、集群状态管理等功能。</p>
+<p>Spring Cloud的子项目包括：</p>
+<ul>
+<li>Spring Cloud Config：分布式配置管理工具，支持git、svn、本地存储等方式远程管理配置文件。</li>
+<li><p>Spring Cloud Netflix：核心组件，整合了多个Netflix开源套件。</p>
+<ul>
+<li>Eureka：服务治理组件，包含服务注册中心、服务注册和发现。</li>
+<li>Hystrix：容错管理，实现了断路器模式，对延迟和故障提供容错功能。</li>
+<li>Ribbon：为客户端提供负载均衡组件。</li>
+<li>Feign：基于Hystrix和Ribbon的声明式服务调用组件。</li>
+<li>Zuul：网管组件，提供动态路由、访问过滤等功能。</li>
+<li><p>Archaius：外部API配置管理组件。</p>
+<p>…</p>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Spring Cloud是基于Spring Boot实现的微服务框架，提供了配置管理、服务治理、断路器、智能路由、微代理、控制总线、全局锁、决策竞选、分布式会话、集群状态管理等功能。&lt;/p&gt;
+&lt;p&gt;Spring Cloud的子项目包括：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Sprin
+    
+    </summary>
+    
+    
+      <category term="spring cloud" scheme="http://yoursite.com/tags/spring-cloud/"/>
+    
+  </entry>
+  
+</feed>
