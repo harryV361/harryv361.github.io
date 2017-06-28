@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-06-28T14:02:36.000Z</updated>
+  <updated>2017-06-28T14:20:04.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2017/06/20/spring%20cloud%20config/"/>
     <id>http://yoursite.com/2017/06/20/spring cloud config/</id>
     <published>2017-06-20T07:14:22.000Z</published>
-    <updated>2017-06-28T14:02:36.000Z</updated>
+    <updated>2017-06-28T14:20:04.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="1-简介：spring-cloud-config是一个分布式的配置中心，集中的来管理所有环境的配置文件，默认使用git来存储，也可以支持svn、本地文件等方式。它分为两个部分：server和client"><a href="#1-简介：spring-cloud-config是一个分布式的配置中心，集中的来管理所有环境的配置文件，默认使用git来存储，也可以支持svn、本地文件等方式。它分为两个部分：server和client" class="headerlink" title="1. 简介：spring cloud config是一个分布式的配置中心，集中的来管理所有环境的配置文件，默认使用git来存储，也可以支持svn、本地文件等方式。它分为两个部分：server和client"></a>1. 简介：spring cloud config是一个分布式的配置中心，集中的来管理所有环境的配置文件，默认使用git来存储，也可以支持svn、本地文件等方式。它分为两个部分：server和client</h2><pre><code>* config-server 服务端，配置中心
 * config-client 客户端，客户端调用server端暴露接口获取配置信息
@@ -35,7 +35,7 @@
 <h3 id="d-在application-yml文件中添加仓库等配置信息-1"><a href="#d-在application-yml文件中添加仓库等配置信息-1" class="headerlink" title="d.在application.yml文件中添加仓库等配置信息"></a>d.在application.yml文件中添加仓库等配置信息</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">server:</div><div class="line">  port: 7777</div><div class="line"></div><div class="line">spring:</div><div class="line">  application:</div><div class="line">    name: cloud</div><div class="line">  cloud:</div><div class="line">    config:</div><div class="line">      profile: config-dev</div><div class="line">      label: master</div><div class="line">      uri: http://localhost:8888</div><div class="line">      env: default</div></pre></td></tr></table></figure>
 <p><a href="http://git.oschina.net/harryV/cloud-config-repo/blob/master/cloud-config-dev.yml" target="_blank" rel="external">http://git.oschina.net/harryV/cloud-config-repo/blob/master/cloud-config-dev.yml</a> 文件配置如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">spring:</div><div class="line">    datasource:</div><div class="line">      url: jdbc:mysql://192.168.1.240:3306/carzone_crm?useUnicode=true&amp;amp;characterEncoding=UTF-8</div><div class="line">      username: tmp</div><div class="line">      password: sfdde</div><div class="line">name: 李喆</div></pre></td></tr></table></figure>
-<p>在浏览器输入<a href="http://localhost:7777/，结果如下图所示：" target="_blank" rel="external">http://localhost:7777/，结果如下图所示：</a></p>
+<p>在浏览器输入<a href="http://localhost:7777/" target="_blank" rel="external">http://localhost:7777/</a> ，结果如下图所示：<br><img src="https://github.com/harryV361/harryv361.github.io/blob/master/img/2.png" alt="image"></p>
 ]]></content>
     
     <summary type="html">
@@ -56,7 +56,7 @@
     <link href="http://yoursite.com/2017/06/04/spring%20cloud%20eureka/"/>
     <id>http://yoursite.com/2017/06/04/spring cloud eureka/</id>
     <published>2017-06-04T13:20:22.000Z</published>
-    <updated>2017-06-04T13:55:53.000Z</updated>
+    <updated>2017-06-28T14:19:52.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="1-简介：spring-cloud-eureka是spring-cloud-netflix微服务组件的一部分，主要负责微服务的服务治理功能。"><a href="#1-简介：spring-cloud-eureka是spring-cloud-netflix微服务组件的一部分，主要负责微服务的服务治理功能。" class="headerlink" title="1. 简介：spring cloud eureka是spring cloud netflix微服务组件的一部分，主要负责微服务的服务治理功能。"></a>1. 简介：spring cloud eureka是spring cloud netflix微服务组件的一部分，主要负责微服务的服务治理功能。</h2><h2 id="2-环境准备"><a href="#2-环境准备" class="headerlink" title="2. 环境准备"></a>2. 环境准备</h2><pre><code>* JDK: 1.8.0_101
 * gradle: 3.3
@@ -70,7 +70,7 @@
 <p>build.gradle<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">dependencies &#123;</div><div class="line">    compile &apos;org.springframework.boot:spring-boot-starter-actuator&apos;</div><div class="line">    compile &apos;org.springframework.cloud:spring-cloud-starter-eureka&apos;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <h3 id="7-在在spring-cloud目录下执行gradle-create-dirs命令，创建工程目录"><a href="#7-在在spring-cloud目录下执行gradle-create-dirs命令，创建工程目录" class="headerlink" title="7. 在在spring-cloud目录下执行gradle create-dirs命令，创建工程目录"></a>7. 在在spring-cloud目录下执行gradle create-dirs命令，创建工程目录</h3><h3 id="8-通过-EnableEurekaServer启动一个服务注册中心提供给其他应用会话"><a href="#8-通过-EnableEurekaServer启动一个服务注册中心提供给其他应用会话" class="headerlink" title="8. 通过@EnableEurekaServer启动一个服务注册中心提供给其他应用会话"></a>8. 通过@EnableEurekaServer启动一个服务注册中心提供给其他应用会话</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">@EnableEurekaServer</div><div class="line">@SpringBootApplication</div><div class="line">public class EurekaServerApplication &#123;</div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        new SpringApplicationBuilder(EurekaServerApplication.class).web(true).run(args);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="9-配置文件"><a href="#9-配置文件" class="headerlink" title="9. 配置文件"></a>9. 配置文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">server:</div><div class="line">  port: 8761</div><div class="line">spring:</div><div class="line">  application:</div><div class="line">    name: eureka</div><div class="line">    cloud:</div><div class="line">        config:</div><div class="line">          uri: $&#123;CONFIG_SERVER_URL:http://localhost:8888&#125;</div><div class="line">eureka:</div><div class="line">  client:</div><div class="line">    registerWithEureka: false</div><div class="line">    fetchRegistry: false</div><div class="line">    serviceUrl:</div><div class="line">      defaultZone: http://localhost:8761/eureka/</div><div class="line">  instance:</div><div class="line">    hostname: localhost</div><div class="line">    metadataMap:</div><div class="line">      instanceId: $&#123;spring.application.name&#125;:$&#123;spring.application.instance_id:$&#123;random.value&#125;&#125;</div></pre></td></tr></table></figure>
-<h3 id="10-启动应用后，访问http-localhost-8761-。"><a href="#10-启动应用后，访问http-localhost-8761-。" class="headerlink" title="10. 启动应用后，访问http://localhost:8761/。"></a>10. 启动应用后，访问<a href="http://localhost:8761/。" target="_blank" rel="external">http://localhost:8761/。</a></h3><p><img src="https://raw.githubusercontent.com/harryV361/harryv361.github.io/master/img/CB49B569-2DC3-446B-A77C-5DCA7014EFFC.png" alt="image"></p>
+<h3 id="10-启动应用后，访问http-localhost-8761"><a href="#10-启动应用后，访问http-localhost-8761" class="headerlink" title="10. 启动应用后，访问http://localhost:8761/"></a>10. 启动应用后，访问<a href="http://localhost:8761/" target="_blank" rel="external">http://localhost:8761/</a></h3><p><img src="https://github.com/harryV361/harryv361.github.io/blob/master/img/1.png" alt="image"></p>
 ]]></content>
     
     <summary type="html">
