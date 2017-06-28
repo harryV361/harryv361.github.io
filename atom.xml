@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-06-04T13:55:53.000Z</updated>
+  <updated>2017-06-28T14:02:36.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,42 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>spring cloud config</title>
+    <link href="http://yoursite.com/2017/06/20/spring%20cloud%20config/"/>
+    <id>http://yoursite.com/2017/06/20/spring cloud config/</id>
+    <published>2017-06-20T07:14:22.000Z</published>
+    <updated>2017-06-28T14:02:36.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="1-简介：spring-cloud-config是一个分布式的配置中心，集中的来管理所有环境的配置文件，默认使用git来存储，也可以支持svn、本地文件等方式。它分为两个部分：server和client"><a href="#1-简介：spring-cloud-config是一个分布式的配置中心，集中的来管理所有环境的配置文件，默认使用git来存储，也可以支持svn、本地文件等方式。它分为两个部分：server和client" class="headerlink" title="1. 简介：spring cloud config是一个分布式的配置中心，集中的来管理所有环境的配置文件，默认使用git来存储，也可以支持svn、本地文件等方式。它分为两个部分：server和client"></a>1. 简介：spring cloud config是一个分布式的配置中心，集中的来管理所有环境的配置文件，默认使用git来存储，也可以支持svn、本地文件等方式。它分为两个部分：server和client</h2><pre><code>* config-server 服务端，配置中心
+* config-client 客户端，客户端调用server端暴露接口获取配置信息
+</code></pre><h2 id="2-搭建配置中心"><a href="#2-搭建配置中心" class="headerlink" title="2. 搭建配置中心"></a>2. 搭建配置中心</h2><h3 id="a-创建子工程spring-cloud-config-server"><a href="#a-创建子工程spring-cloud-config-server" class="headerlink" title="a. 创建子工程spring-cloud-config-server"></a>a. 创建子工程spring-cloud-config-server</h3><h3 id="b-在子工程的build-gradle文件中加入依赖："><a href="#b-在子工程的build-gradle文件中加入依赖：" class="headerlink" title="b.在子工程的build.gradle文件中加入依赖："></a>b.在子工程的build.gradle文件中加入依赖：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">dependencies &#123;</div><div class="line">    compile &apos;org.springframework.boot:spring-boot-starter-actuator&apos;</div><div class="line">    compile &apos;org.springframework.cloud:spring-cloud-starter-config&apos;</div><div class="line">    compile &apos;org.springframework.cloud:spring-cloud-config-server&apos;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="c-创建启动主类"><a href="#c-创建启动主类" class="headerlink" title="c.创建启动主类"></a>c.创建启动主类</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">@SpringBootApplication</div><div class="line">@EnableConfigServer</div><div class="line">public class Application &#123;</div><div class="line"></div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        SpringApplication.run(Application.class, args);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="d-在application-yml文件中添加仓库等配置信息"><a href="#d-在application-yml文件中添加仓库等配置信息" class="headerlink" title="d.在application.yml文件中添加仓库等配置信息"></a>d.在application.yml文件中添加仓库等配置信息</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">server:</div><div class="line">  port: 8888</div><div class="line">spring:</div><div class="line">  cloud:</div><div class="line">    config:</div><div class="line">      server:</div><div class="line">        git:</div><div class="line">          uri: http://git.oschina.net/harryV/cloud-config-repo</div><div class="line">          clone-on-start: true</div></pre></td></tr></table></figure>
+<p>通过这4个步骤之后，启动应用，一个分布式的配置中心就搭建完成了。</p>
+<h2 id="3-配置规则解释"><a href="#3-配置规则解释" class="headerlink" title="3.配置规则解释"></a>3.配置规则解释</h2><p>url与配置文件的映射关系：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">/&#123;application&#125;/&#123;profile&#125;[/&#123;label&#125;]</div><div class="line">/&#123;application&#125;-&#123;profile&#125;.yml</div><div class="line">/&#123;label&#125;/&#123;application&#125;-&#123;profile&#125;.yml</div><div class="line">/&#123;application&#125;-&#123;profile&#125;.properties</div><div class="line">/&#123;label&#125;/&#123;application&#125;-&#123;profile&#125;.properties</div></pre></td></tr></table></figure>
+<h2 id="4-客户端使用"><a href="#4-客户端使用" class="headerlink" title="4.客户端使用"></a>4.客户端使用</h2><h3 id="a-创建子工程spring-cloud-config-client"><a href="#a-创建子工程spring-cloud-config-client" class="headerlink" title="a. 创建子工程spring-cloud-config-client"></a>a. 创建子工程spring-cloud-config-client</h3><h3 id="b-在子工程的build-gradle文件中加入依赖：-1"><a href="#b-在子工程的build-gradle文件中加入依赖：-1" class="headerlink" title="b.在子工程的build.gradle文件中加入依赖："></a>b.在子工程的build.gradle文件中加入依赖：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">dependencies &#123;</div><div class="line">    compile &apos;org.springframework.boot:spring-boot-starter-web&apos;</div><div class="line">    compile &apos;org.springframework.boot:spring-boot-starter-actuator&apos;</div><div class="line">    compile &apos;org.springframework.cloud:spring-cloud-config-client&apos;</div><div class="line">    compile &apos;org.springframework.cloud:spring-cloud-starter-config&apos;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="c-创建启动主类-1"><a href="#c-创建启动主类-1" class="headerlink" title="c.创建启动主类"></a>c.创建启动主类</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">@EnableAutoConfiguration</div><div class="line">@ComponentScan</div><div class="line">@RestController</div><div class="line">@RefreshScope</div><div class="line">public class Application &#123;</div><div class="line"></div><div class="line">    @Value(&quot;$&#123;name:World!&#125;&quot;)</div><div class="line">    String name;</div><div class="line"></div><div class="line">    @RequestMapping(&quot;/&quot;)</div><div class="line">    public String home() &#123;</div><div class="line">        return &quot;Hello &quot; + name;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        SpringApplication.run(Application.class, args);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="d-在application-yml文件中添加仓库等配置信息-1"><a href="#d-在application-yml文件中添加仓库等配置信息-1" class="headerlink" title="d.在application.yml文件中添加仓库等配置信息"></a>d.在application.yml文件中添加仓库等配置信息</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">server:</div><div class="line">  port: 7777</div><div class="line"></div><div class="line">spring:</div><div class="line">  application:</div><div class="line">    name: cloud</div><div class="line">  cloud:</div><div class="line">    config:</div><div class="line">      profile: config-dev</div><div class="line">      label: master</div><div class="line">      uri: http://localhost:8888</div><div class="line">      env: default</div></pre></td></tr></table></figure>
+<p><a href="http://git.oschina.net/harryV/cloud-config-repo/blob/master/cloud-config-dev.yml" target="_blank" rel="external">http://git.oschina.net/harryV/cloud-config-repo/blob/master/cloud-config-dev.yml</a> 文件配置如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">spring:</div><div class="line">    datasource:</div><div class="line">      url: jdbc:mysql://192.168.1.240:3306/carzone_crm?useUnicode=true&amp;amp;characterEncoding=UTF-8</div><div class="line">      username: tmp</div><div class="line">      password: sfdde</div><div class="line">name: 李喆</div></pre></td></tr></table></figure>
+<p>在浏览器输入<a href="http://localhost:7777/，结果如下图所示：" target="_blank" rel="external">http://localhost:7777/，结果如下图所示：</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;1-简介：spring-cloud-config是一个分布式的配置中心，集中的来管理所有环境的配置文件，默认使用git来存储，也可以支持svn、本地文件等方式。它分为两个部分：server和client&quot;&gt;&lt;a href=&quot;#1-简介：spring-cloud-c
+    
+    </summary>
+    
+    
+      <category term="spring cloud" scheme="http://yoursite.com/tags/spring-cloud/"/>
+    
+      <category term="spring cloud config" scheme="http://yoursite.com/tags/spring-cloud-config/"/>
+    
+  </entry>
   
   <entry>
     <title>spring cloud eureka</title>
